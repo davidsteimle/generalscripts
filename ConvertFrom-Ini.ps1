@@ -7,7 +7,7 @@
 
 .AUTHOR Steimle, David B.
 
-.COMPANYNAME 
+.COMPANYNAME General Dynamic Information Technology
 
 .COPYRIGHT 
 
@@ -58,17 +58,25 @@ function ConvertFrom-Ini{
     )
     # Get content of your ini file as an array.
     [array]$MyIni = Get-Content $InputFile
+    # Initialize an array to hold name/value elements
+    # Verified that NAME= with no value does not throw the proceedure off track
     $MyElements = @()
+    # Crawl through $MyIni, split on delimiter, add to $MyElements
     foreach($Ini in $MyIni){
         $MyElements += $Ini -split "$Delimiter"
     }
+    # Initialize a hash table
     $MyHash = @{}
+    # Initialize an iterator
     $i = 0
+    # Crawl through $MyElements and split pairs into name/value entries
     while($i -lt $MyElements.Length){
         $MyHash.add("$($MyElements[$i])","$($MyElements[$i+1])")
         $i++
         $i++
     }
+    # Convert hash table to an object
     $MyObject = New-Object -TypeName psobject -Property $MyHash
+    # Return object
     return $MyObject
 }
