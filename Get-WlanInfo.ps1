@@ -34,13 +34,15 @@
 <# 
 
 .SYNOPSIS
- Get wlan0 information from ifconfig.
+ Get wlan0 information from ifconfig. Original intent was to make wlan0 information available via bluetooth.
  
 .DESCRIPTION 
  Get wlan0 information from ifconfig. 
 
 #> 
-Param()
+Param(
+    [System.IO.FileInfo]$Outfile = "~/.cache/obexd/wlan.txt"
+)
 
 $Ifconfig = ifconfig wlan0
 
@@ -70,13 +72,15 @@ class IpInfo{
 $IpInfo = @{}
 
 $Ifconfigv4Detail.ForEach({
-    [array]$Temp = $($PSItem.Split("  "))
+    [array]$Temp = $($PSItem.Split(" "))
     $IpInfo.Add($Temp[0],$Temp[1])
 })
 
 $Ifconfigv6Detail.ForEach({
-    [array]$Temp = $($PSItem.Split("  "))
+    [array]$Temp = $($PSItem.Split(" "))
     $IpInfo.Add($Temp[0],$Temp[1])
 })
 
 $IpInfo = New-Object -TypeName IpInfo -Property $IpInfo
+
+$IpInfo | Out-File -Path $Outfile -Force
