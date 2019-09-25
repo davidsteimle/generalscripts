@@ -39,11 +39,11 @@
  Get wlan0 information from ifconfig. Original intent was to make wlan0 information available via bluetooth.
  
 .DESCRIPTION 
- Get wlan0 information from ifconfig. 
+ Get wlan0 information from a Linux system with ifconfig, Parses data into a PS Object with Ipv4 and Ipv6 records.
 
 #> 
 Param(
-    [System.IO.FileInfo]$Outfile = "~/.cache/obexd/wlan.txt"
+    [System.IO.FileInfo]$Outfile = "~/.cache/obexd/wlan.txt" # The location and file to output data to.
 )
 
 $Ifconfig = ifconfig wlan0
