@@ -58,9 +58,16 @@
 #> 
 Param(
     [System.IO.FileInfo]$Outfile = "~/.cache/obexd/wlan.txt" # The location and file to output data.
+    ,
+    [string]$Interface = "wlan0" # Name of interface to query.
 )
 
-$Ifconfig = ifconfig wlan0
+# Get ifconfig information for wlan0
+try{
+    $Ifconfig = ifconfig $Interface
+} catch {
+    Write-Host "An error occurred!"
+}
 
 $Ipv4Regex = "inet\s[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 $Ipv6Regex = "inet6\s[a-fA-F0-9]{1,4}::[a-fA-F0-9]{1,4}:[a-fA-F0-9]{1,4}:[a-fA-F0-9]{1,4}:[a-fA-F0-9]{1,4}"
