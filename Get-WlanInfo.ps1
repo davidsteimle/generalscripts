@@ -40,10 +40,24 @@
  
 .DESCRIPTION 
  Get wlan0 information from a Linux system with ifconfig, Parses data into a PS Object with Ipv4 and Ipv6 records.
+ 
+ This script was written for/on a system with the following properties:
+ 
+ Name                           Value
+ ----                           -----
+ PSVersion                      6.2.0
+ PSEdition                      Core
+ GitCommitId                    6.2.0
+ OS                             Linux 4.19.66-v7l+ #1253 SMP Thu Aug 15 12:02:08 BST 2019
+ Platform                       Unix
+ PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.2}
+ PSRemotingProtocolVersion      2.3
+ SerializationVersion           1.1.0.1
+ WSManStackVersion              3.0
 
 #> 
 Param(
-    [System.IO.FileInfo]$Outfile = "~/.cache/obexd/wlan.txt" # The location and file to output data to.
+    [System.IO.FileInfo]$Outfile = "~/.cache/obexd/wlan.txt" # The location and file to output data.
 )
 
 $Ifconfig = ifconfig wlan0
