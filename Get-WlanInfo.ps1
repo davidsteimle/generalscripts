@@ -41,6 +41,10 @@
 .DESCRIPTION 
  Get wlan0 information from a Linux system with ifconfig, Parses data into a PS Object with Ipv4 and Ipv6 records.
  
+ Potential use: a cron job could be used to run the script on a schedule. If a headless system is connected to a 
+ wifi source, and you cannot locate the address, this script's output could be accessed via Bluetooth (provided 
+ pairing and a Bluetooth transfer server is set up). 
+ 
  This script was written for/on a system with the following properties:
  
  Name                           Value
@@ -95,13 +99,25 @@ class IpInfo{
 $IpInfo = @{}
 
 $Ifconfigv4Detail.ForEach({
-    [array]$Temp = $($PSItem.Split(" "))
-    $IpInfo.Add($Temp[0],$Temp[1])
+    try{ 
+        [array]$Temp = $($PSItem.Split(" ")) 
+    } catch { 
+        Write-Host "An error occurred splitting $PSItem" 
+    }
+    try{ 
+        $IpInfo.Add($Temp[0],$Temp[1]) 
+    } catch {}
 })
 
 $Ifconfigv6Detail.ForEach({
-    [array]$Temp = $($PSItem.Split(" "))
-    $IpInfo.Add($Temp[0],$Temp[1])
+    try{ 
+        [array]$Temp = $($PSItem.Split(" ")) 
+    } catch { 
+        Write-Host "An error occurred splitting $PSItem" 
+    }
+    try{ 
+        $IpInfo.Add($Temp[0],$Temp[1]) 
+    } catch {}
 })
 
 $IpInfo = New-Object -TypeName IpInfo -Property $IpInfo
