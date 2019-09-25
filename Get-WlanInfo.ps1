@@ -58,5 +58,25 @@ $Ifconfig.ForEach({
 [array]$Ifconfigv4Detail = $Ipv4.Split("  ")
 [array]$Ifconfigv6Detail = $Ipv6.Split("  ")
 
-$Ifconfigv4Detail
-$Ifconfigv6Detail
+class IpInfo{
+    [System.Net.IPAddress]$inet
+    [System.Net.IPAddress]$netmask
+    [System.Net.IPAddress]$broadcast
+    [System.Net.IPAddress]$inet6
+    [int]$prefixlen
+    [string]$scopeid
+}
+
+$IpInfo = @{}
+
+$Ifconfigv4Detail.ForEach({
+    [array]$Temp = $($PSItem.Split("  "))
+    $IpInfo.Add($Temp[0],$Temp[1])
+})
+
+$Ifconfigv6Detail.ForEach({
+    [array]$Temp = $($PSItem.Split("  "))
+    $IpInfo.Add($Temp[0],$Temp[1])
+})
+
+$IpInfo = New-Object -TypeName IpInfo -Property $IpInfo
