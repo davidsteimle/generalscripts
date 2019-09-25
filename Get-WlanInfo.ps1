@@ -1,3 +1,5 @@
+#!/usr/bin/powershell/pwsh
+
 <#PSScriptInfo
 
 .VERSION 1.0
