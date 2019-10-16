@@ -16,7 +16,7 @@ try{
 try{
     Write-Host $PSVersionTable.PSVersion
     try{
-        .\iAmNotAFile.ps1
+        1 / 0
     } catch {
         "Nested try failed..."
     }
@@ -27,7 +27,7 @@ try{
 #This should fail on parent try...
 
 try{
-    .\iAmNotAFile.ps1
+    1 / 0
     try{
         Write-Host $PSVersionTable.PSVersion
     } catch {
