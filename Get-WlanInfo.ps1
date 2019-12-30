@@ -125,3 +125,5 @@ $IpInfo = New-Object -TypeName IpInfo -Property $IpInfo
 if($OutFile){
     $IpInfo | Out-File -Path $Outfile -Force
 }
+
+$IpInfo
