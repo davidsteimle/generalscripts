@@ -43,7 +43,7 @@
  
  Potential use: a cron job could be used to run the script on a schedule. If a headless system is connected to a 
  wifi source, and you cannot locate the address, this script's output could be accessed via Bluetooth (provided 
- pairing and a Bluetooth transfer server is set up). 
+ pairing and a Bluetooth transfer server is set up). My system's Bluetooth cache is "~/.cache/obexd/"
  
  This script was written for/on a system with the following properties:
  
@@ -61,7 +61,7 @@
 
 #> 
 Param(
-    [System.IO.FileInfo]$Outfile = "~/.cache/obexd/wlan.txt" # The location and file to output data.
+    [System.IO.FileInfo]$Outfile # The location and file to output data.
     ,
     [string]$Interface = "wlan0" # Name of interface to query.
 )
@@ -122,4 +122,6 @@ $Ifconfigv6Detail.ForEach({
 
 $IpInfo = New-Object -TypeName IpInfo -Property $IpInfo
 
-$IpInfo | Out-File -Path $Outfile -Force
+if($OutFile){
+    $IpInfo | Out-File -Path $Outfile -Force
+}
