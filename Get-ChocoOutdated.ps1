@@ -1,4 +1,20 @@
 function Get-ChocoOutdated{
+    <#PSScriptInfo
+
+    .AUTHOR David B. Steimle
+
+    #>
+
+    <#
+
+    .DESCRIPTION
+    A function to get outdated cocolatey packages as an array of objects.
+
+    #>
+
+    [CmdletBinding()]
+    Param()
+
     $TestChocoOutdated = [array]$(choco outdated)
 
     $OutdatedList = New-Object "System.Collections.Generic.List[PSObject]"
