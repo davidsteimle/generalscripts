@@ -8,7 +8,7 @@ function Get-ChocoOutdated{
     <#
 
     .DESCRIPTION
-    A function to get outdated cocolatey packages as an array of objects.
+    A function to get outdated chocolatey packages as an array of objects.
 
     #>
 
