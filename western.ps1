@@ -37,7 +37,9 @@ $TheWesternLandsHashes = @(
         Index = 5
         Name = "Technothusiasts' Energy Farm"
         Descriptions = @(
-            ""
+            "Patchwork of Ancient Earth technology and stolen Stupendous Science devices run the farm’s equipment.",
+            "The devices are run by water wheels and wind turbines which constantly generate energy. The energy is sold to Route 66 and Nukatomi Plaza.",
+            "Technothusiasts are fringe humans with a fascination for Ancient Earth technology, to the extreme."
         )
     },
     @{
